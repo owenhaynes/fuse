@@ -62,6 +62,13 @@ func CustomValue(name string, value string) MountOption {
 	}
 }
 
+func CustomInit(flag InitFlags) MountOption {
+	return func(conf *mountConfig) error {
+		conf.initFlags |= flag
+		return nil
+	}
+}
+
 // Subtype sets the subtype of the mount. The main type is always
 // `fuse`. The type in a list of mounted file systems will look like
 // `fuse.foo`.
